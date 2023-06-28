@@ -27,23 +27,23 @@ int _printf(const char *format, ...)
 			case 'c':{
 					
 				int charactarer = va-arg(args, int);
-				count =+ printf("%c", character
+				index =+ printf("%c", character
 					       );break;
 				 }
 			case 's':
 			{
 				char *str = va_arg(args, char *);
-				count += printf("%s", str);
+				index += printf("%s", str);
 				break;
 
 			}
 		else {
-			printf(*format);
-			count++;
+			printf(*format[index]);
+			index++;
 		}
 
 		va-end(args);
 		
-		return (count);
+		return (index);
 
 		}
