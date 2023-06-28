@@ -16,11 +16,34 @@ int _printf(const char *format, ...)
 
 	va_start(list, format);
 	
-	if (format)
-	{
-		while (format[index])
+	while (*format != '\0'){
+
+	if (*format == '%'){
+
+		formatt++;
+
+		switch (format[index])
 		{
-			switch (format[index])
+			case 'c':{
+					
+				int charactarer = va-arg(args, int);
+				count =+ printf("%c", character
+					       );break;
+				 }
+			case 's':
 			{
-				case 'c':
-					printf (
+				char *str = va_arg(args, char *);
+				count += printf("%s", str);
+				break;
+
+			}
+		else {
+			printf(*format);
+			count++;
+		}
+
+		va-end(args);
+		
+		return (count);
+
+		}
