@@ -1,21 +1,14 @@
 #include "main.h"
-#include <stdio.h>
-#include <unistd.h>
-
-/**
- * _printf - Custom printf function  mimickinf printf
- * @format: prints the given srgument, c, s, %
- * Return: returns length of the formatted characters
- */
+#include <stdarg.h>
 
 int _printf(const char *format, ...)
-{
+	{
+	va_list my_list;
 	int index = 0;
 	int len_counter = 0;
-	va_list my_list;
 
 	if (format == NULL)
-		return (-1);
+		return -1;
 
 	va_start(my_list, format);
 	while (format[index] != '\0')
@@ -23,23 +16,22 @@ int _printf(const char *format, ...)
 	if (format[index] == '%')
 	{
 		index++;
-		if (format[index] == 'c')
+		if(format[index] == 'c')
 		{
 			char my_char = va_arg(my_list, int);
-
 			write(1, &my_char, 1);
 			len_counter++;
 		}
 	}
 	else
 	{
-		write(1, &format[index], 1);
-		len_counter++;
+	write(1,&format[index],1);
+	len_counter++;
 	}
-		index++;
+	index++;
 	}
 	va_end(my_list);
 	char x = '\n';
-
+	write(1,&x, 1);
 	return (len_counter);
-}
+	}
