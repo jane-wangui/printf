@@ -23,14 +23,26 @@ int _printf(const char *format, ...)
 	if (format[index] == '%')
 	{
 		index++;
-		if (format[index] == 'c')
+		switch (format[index])
+		{
+		case 'c':
 		{
 			char my_char = va_arg(my_list, int);
 
 			write(1, &my_char, 1);
 			len_counter++;
+			break;
 		}
-	}
+		case 's':
+		{
+			char *my_string = va_arg(my_list, char *);
+			if (!my_string)
+				my_string = "(nil)";
+			write(1, &my_string, 1);
+			break;
+		}
+		}
+		}
 	else
 	{
 		write(1, &format[index], 1);
