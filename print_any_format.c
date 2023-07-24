@@ -46,7 +46,7 @@ int _printf(const char *format, ...)
 			len_counter++;
 			break;
 		default:
-			putchar('%')
+			putchar('%');
 			putchar(*format);
 			len_counter += 2;
 			break;
@@ -60,7 +60,6 @@ int _printf(const char *format, ...)
 		index++;
 	}
 	va_end(my_list);
-	char x = '\n';
-
+	
 	return (len_counter);
 }
