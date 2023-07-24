@@ -36,8 +36,9 @@ int _printf(const char *format, ...)
 		case 's':
 		{
 			char *my_string = va_arg(my_list, char *);
+
 			if (!my_string)
-				my_string = "(nil)";
+			my_string = "(nil)";
 			write(1, &my_string, 1);
 			break;
 		}
