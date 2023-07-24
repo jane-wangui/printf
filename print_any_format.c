@@ -46,7 +46,7 @@ int _printf(const char *format, ...)
 			len_counter++;
 			break;
 		default:
-			putchar('%')
+			putchar('%');
 			putchar(*format);
 			len_counter += 2;
 			break;
