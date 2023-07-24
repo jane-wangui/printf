@@ -41,6 +41,15 @@ int _printf(const char *format, ...)
 			write(1, &my_string, 1);
 			break;
 		}
+		case '%':
+			putchar('%');
+			len_counter++;
+			break;
+		default:
+			putchar('%')
+			putchar(*format);
+			len_counter += 2;
+			break;
 		}
 		}
 	else
