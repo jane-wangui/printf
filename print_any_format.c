@@ -1,13 +1,11 @@
 #include "main.h"
-#include <stdio.h>
 #include <unistd.h>
 
 /**
- * _printf - Custom printf function  mimickinf printf
- * @format: prints the given srgument, c, s, %
+ * _printf - Custom printf function mimicking printf
+ * @format: prints the given arguments, c, s, %
  * Return: returns length of the formatted characters
  */
-
 int _printf(const char *format, ...)
 {
 	int index = 0;
@@ -15,50 +13,52 @@ int _printf(const char *format, ...)
 	va_list my_list;
 
 	if (format == NULL)
-		return (-1);
+	return (-1);
 
 	va_start(my_list, format);
-	while (format[index] != '\0')
+	while (format[index])
 	{
 	if (format[index] == '%')
 	{
-		index++;
-		switch (format[index])
-		{
-		case 'c':
-		{
-			char my_char = va_arg(my_list, int);
-
-			write(1, &my_char, 1);
-			len_counter++;
-			break;
+	index++;
+	switch (format[index])
+	{
+	case 'c':
+	{
+		char my_char = va_arg(my_list, int);
+		write(1, &my_char, 1);
+		len_counter++;
+		break;
 		}
 		case 's':
 		{
-			char *my_string = va_arg(my_list, char *);
-
-			if (!my_string)
+		char *my_string = va_arg(my_list, char *);
+		if (!my_string)
 			my_string = "(nil)";
-			write(1, &my_string, 1);
-			break;
+		while (*my_string)
+		{
+			write(1, my_string, 1);
+			my_string++;
+		}
+		break;
 		}
 		case '%':
-			putchar('%');
+			write(1, &format[index], 1);
 			len_counter++;
-			break;
+		break;
 		default:
-			putchar('%');
-			putchar(*format);
+			write(1, "%", 1);
+			write(1, &format[index], 1);
 			len_counter += 2;
-			break;
+		break;
 		}
 		}
-	else
+		else
 	{
 		write(1, &format[index], 1);
 		len_counter++;
 	}
-		index++;
+	index++;
 	}
 	va_end(my_list);
 	return (len_counter);
