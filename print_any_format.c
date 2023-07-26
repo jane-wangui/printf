@@ -2,6 +2,14 @@
 #include <unistd.h>
 
 /**
+ * _to_binary - Convert an unsigned integer to binary representation
+ * @num: The unsigned integer to be converted
+ * @buffer: The buffer to store the binary representation
+ * Return: The length of the binary representation (excluding null byte)
+ */
+int _to_binary(unsigned int num, char *buffer);
+
+/**
  * _printf - Custom printf function mimicking printf
  * @format: prints the given arguments, c, s, %
  * Return: returns length of the formatted characters
@@ -86,6 +94,16 @@ int _printf(const char *format, ...)
 		}
 			break;
 		}
+		case 'b':
+		{
+			unsigned int num = va_arg(my_list, unsigned int);
+			char buffer[32];
+			int digit_count = _to_binary(num, buffer);
+			write(1, buffer, digit_count);
+			len_counter += digit_count;
+		break;
+		}
+
 		default:
 			write(1, "%", 1);
 			write(1, &format[index], 1);
