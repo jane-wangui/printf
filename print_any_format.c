@@ -80,7 +80,7 @@ int _printf(const char *format, ...)
 			buffer[digit_count++] = '-';
 		}
 
-		for (i = digit_count -1; i >=0; i--)
+		for (i = digit_count -1; i >= 0; i--)
 		{
 			write(1, &buffer[i], 1);
 			len_counter++;
@@ -90,7 +90,7 @@ int _printf(const char *format, ...)
 		default:
 			write(1, "%", 1);
 			write(1, &format[index], 1);
-			len_counter +=2;
+			len_counter += 2;
 		}	break;
 		}
 		else
