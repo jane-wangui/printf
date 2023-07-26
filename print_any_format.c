@@ -51,15 +51,28 @@ int _printf(const char *format, ...)
 			write(1, &format[index], 1);
 			len_counter += 2;
 		break;
+		case 'd':
+		case 'i':
+		{
+			int num = va_arg(my_list, int);
+			char buffer[32];
+			int digit_count = 0;
 		}
+		int i = 0;
+		for (i = digit_count -1; i >=0; i--);
+		{
+			write(1, &buffer[i], 1);
+			len_counter++;
+			break;
 		}
-		else
-	{
-		write(1, &format[index], 1);
-		len_counter++;
+		{
+		
+			write(1, &format[index], 1);
+                        len_counter++;
 	}
 	index++;
 	}
 	va_end(my_list);
 	return (len_counter);
+}
 }
